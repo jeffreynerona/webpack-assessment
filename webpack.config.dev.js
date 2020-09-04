@@ -1,15 +1,19 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './build',
+    contentBase: path.resolve(__dirname, './src/js'),
+    publicPath: '/',
+    hot: true,
+    port: 3000
   },
   entry: './src/js/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'build')
   },
   resolve: {
@@ -29,6 +33,8 @@ module.exports = {
           template: __dirname + '/public/index.html',
           filename: 'index.html',
           inject: 'body'
-      })
+      }),
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin()
   ]
 }

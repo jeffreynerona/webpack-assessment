@@ -4,8 +4,7 @@
   "description": "Webpack Assessment",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config=webpack.config.prod.js",
-    "build-dev": "webpack --config=webpack.config.dev.js",
+    "build": "rm -rf build && webpack --config=webpack.config.prod.js",
     "start": "webpack-dev-server --config=webpack.config.dev.js --hot --open"
   },
   "repository": {
